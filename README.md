@@ -1,0 +1,4 @@
+hrforecast
+==========
+
+HRForecast install cookbook
