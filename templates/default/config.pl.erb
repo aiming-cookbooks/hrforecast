@@ -1,0 +1,9 @@
+{
+    dsn => 'dbi:mysql:hrforecast;hostname=<%= node['hrforecast']['database']['host'] %>',
+    username => '<%= node['hrforecast']['database']['user_name'] %>',
+    password => '<%= node['hrforecast']['database']['password'] %>',
+    port => '<%= node['hrforecast']['application']['port'] %>',
+    host => '<%= node['hrforecast']['application']['host'] %>',
+    front_proxy => ['127.0.0.1'],
+    allow_from => [],
+};

@@ -1,0 +1,6 @@
+start on startup
+stop  on runlevel [016]
+
+respawn
+
+exec su -c "exec /opt/perlbrew/perls/<%= node['hrforecast']['system']['perlbrew_ver'] %>/bin/perl <%= node['hrforecast']['system']['install_dir'] %>/hrforecast.pl --config <%= node['hrforecast']['system']['install_dir'] %>/config.pl"
