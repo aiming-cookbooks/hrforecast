@@ -11,8 +11,11 @@ include_recipe "yum::remi"
 include_recipe "git"
 include_recipe "mysql"
 
+git_clone_dir = node['hrforecast']['system']['install_dir']
+hrforecast_install_dir = node['hrforecast']['system']['install_dir']
+
 # Get htforecast 
-git "#{node['hrforecast']['system']['install_dir']}" do
+git git_clone_dir do
   repository "https://github.com/kazeburo/HRForecast.git"
   revision   "master"
   
@@ -21,12 +24,12 @@ git "#{node['hrforecast']['system']['install_dir']}" do
 
   action     :sync
 
-  notifies   :run, "perlbrew_cpanm_local[#{node['hrforecast']['system']['install_dir']}]", :immediately
+  notifies   :run, "perlbrew_cpanm_local[#{hrforecast_install_dir}]", :immediately
 end
 
 # Install hrforecast required libraries.
 # See at http://blog.nomadscafe.jp/2013/02/hrforecast--.html
-perlbrew_cpanm_local "#{node['hrforecast']['system']['install_dir']}" do
+perlbrew_cpanm_local hrforecast_install_dir do
   perlbrew 'perl-5.18.0'
 end
 
@@ -35,7 +38,7 @@ execute "Setup mysql database" do
   user   "root"
   group  "root"
 
-  cwd    "#{node['hrforecast']['system']['install_dir']}"
+  cwd    hrforecast_install_dir
 
   root_db_pass = node['mysql']['server_root_password']
 
