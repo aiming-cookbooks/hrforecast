@@ -7,8 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# Create user
-user "hrforecast" do
+user_name = node.default['hrforecast']['system']['user_name']
+
+# Create hrforecast application user
+user user_name do
   supports :manage_home => true
   action   :create
 end
