@@ -8,4 +8,5 @@ version          '0.1.0'
 
 depends          'yum'
 depends          'git'
+depends          'mysql'
 depends          'perlbrew'
