@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aiming-cookbooks/hrforecast.png?branch=master)](https://travis-ci.org/aiming-cookbooks/hrforecast)
+
 hrforecast Cookbook
 ===================
 
