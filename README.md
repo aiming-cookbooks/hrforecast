@@ -99,3 +99,7 @@ License and Authors
 LICENSE is MIT.
 
 2013 (c) Aiming Inc.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aiming-cookbooks/hrforecast/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
