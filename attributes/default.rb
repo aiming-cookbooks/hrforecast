@@ -11,5 +11,5 @@ node.default['hrforecast']['application']['host'] = '0.0.0.0'
 node.default['hrforecast']['system']['user_name'] = 'hrforecast'
 node.default['hrforecast']['system']['perlbrew_ver'] = 'perl-5.18.0'
 node.default['hrforecast']['system']['install_dir'] = (
-  "/home/#{node.default['system']['user_name']}/hrforecast"
+  "/home/#{node.default['hrforecast']['system']['user_name']}/hrforecast"
 )
