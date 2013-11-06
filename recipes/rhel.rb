@@ -17,7 +17,7 @@ hrforecast_install_dir = node['hrforecast']['system']['install_dir']
 # Get htforecast 
 git git_clone_dir do
   repository "https://github.com/aiming/HRForecast.git"
-  revision   "feature/zero-fill"
+  revision   "master"
   
   user       "root"
   group      "root"
