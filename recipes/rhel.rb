@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: growthforecast::rhel
+# Cookbook Name:: hrforecast::rhel
 # Recipe:: default
 #
 # Copyright 2013, Aiming, Inc.
@@ -7,12 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "yum::remi"
+include_recipe "yum"
+include_recipe "yum-remi"
 include_recipe "git"
-include_recipe "mysql"
+include_recipe "mysql::client"
+include_recipe "mysql::server"
+include_recipe "perlbrew::default"
+include_recipe "perlbrew::profile"
 
-git_clone_dir = node['hrforecast']['system']['install_dir']
-hrforecast_install_dir = node['hrforecast']['system']['install_dir']
+git_clone_dir = node.default['hrforecast']['system']['install_dir']
+hrforecast_install_dir = node.default['hrforecast']['system']['install_dir']
 
 # Get htforecast 
 git git_clone_dir do
@@ -24,13 +28,7 @@ git git_clone_dir do
 
   action     :sync
 
-  notifies   :run, "perlbrew_cpanm_local[#{hrforecast_install_dir}]", :immediately
-end
-
-# Install hrforecast required libraries.
-# See at http://blog.nomadscafe.jp/2013/02/hrforecast--.html
-perlbrew_cpanm_local hrforecast_install_dir do
-  perlbrew 'perl-5.18.0'
+  notifies   :run, "execute[Setup mysql database]"
 end
 
 # Setup mysql database
