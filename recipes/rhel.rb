@@ -16,7 +16,7 @@ include_recipe "perlbrew::default"
 include_recipe "perlbrew::profile"
 
 git_clone_dir = node.default['hrforecast']['system']['install_dir']
-hrforecast_install_dir = node.default['hrforecast']['system']['install_dir']
+perlbrew_version = node.default['hrforecast']['system']['perlbrew_ver']
 
 # Get htforecast 
 git git_clone_dir do
@@ -31,12 +31,17 @@ git git_clone_dir do
   notifies   :run, "execute[Setup mysql database]"
 end
 
+# Install CPAN packages of required by HRForecast.
+perlbrew_cpanm_local git_clone_dir do
+  perlbrew perlbrew_version
+end
+
 # Setup mysql database
 execute "Setup mysql database" do
   user   "root"
   group  "root"
 
-  cwd    hrforecast_install_dir
+  cwd    git_clone_dir
 
   root_db_pass = node['mysql']['server_root_password']
 
